@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import Controller.CommonBottom?>
+<AnchorPane prefHeight="640.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.UserInfo">
+  <stylesheets>
+        <URL value="@user_info.css" />
+    </stylesheets>
+   <children>
+
+      <Label prefHeight="60.0" prefWidth="380.0" alignment="CENTER" stylesheets="@global.css" text="个人中心" />
+      <AnchorPane fx:id="infoBasicTop" onMouseClicked="#onInfoBasicTopClicked" prefHeight="160.0" prefWidth="380.0">
+         <children>
+            <ImageView fx:id="infoBasicImg" fitHeight="132.0" fitWidth="132.0" layoutX="14.0" layoutY="65" pickOnBounds="true" preserveRatio="true" />
+            <VBox layoutX="185.0" layoutY="80.0" spacing="15">
+               <children>
+                  <Label fx:id="infoBasicName" stylesheets="@global.css" text="louyuanyang" />
+                  <Label fx:id="infoBasicContact"  stylesheets="@global.css" text="131556160" />
+                  <Label fx:id="infoBasicIntro"  stylesheets="@global.css" text="帅到没有图片" />
+               </children>
+            </VBox>
+
+         </children>
+      </AnchorPane>
+
+      <Label fx:id="infoScoreMiddle" alignment="CENTER" layoutY="265.0" prefWidth="380" text="100分">
+         <font>
+            <Font size="50.0" />
+         </font>
+      </Label>
+
+      <GridPane fx:id="infoNumBottom" layoutY="400.0">
+
+      </GridPane>
+
+      <CommonBottom fx:id="commonBottom" />
+   </children>
+</AnchorPane>

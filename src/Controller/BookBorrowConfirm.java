@@ -3,6 +3,7 @@ package Controller;
 import dao.BookDao;
 import dao.BookRecordDao;
 import dao.UserDao;
+import global.BookStatus;
 import global.PageIndex;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,6 +13,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import jdk.net.SocketFlow;
 import model.Book;
 import model.BookRecord;
 import model.User;
@@ -113,6 +115,14 @@ public class BookBorrowConfirm implements Initializable {
         if(result.isPresent() && result.get() == ButtonType.OK) {
             // 借书 如果数据库访问成功则提示成功 否则失败 成功的话还要返回页面
             if(lendBook()) {
+                BookRecord record = null;
+                try {
+                    record = BookRecordDao.getRecordByRid(nowRid);
+                    Book book = BookDao.getBookByBid(record.getBid());
+                    BookDao.updateBookStatus(book.getBid(),BookStatus.BORROWING);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 Alert information = new Alert(Alert.AlertType.INFORMATION, INFORMATION_AGREE);
                 information.showAndWait();
                 information.setTitle(COMMON_TITLE);
@@ -134,6 +144,15 @@ public class BookBorrowConfirm implements Initializable {
         if(result.isPresent() && result.get() == ButtonType.OK) {
             // 拒绝
             if(denyLend()) {
+                try {
+                    BookRecord record = BookRecordDao.getRecordByRid(nowRid);
+                    Book book = BookDao.getBookByBid(record.getBid());
+                    BookDao.updateBookStatus(book.getBid(),BookStatus.FREE);
+                    BookDao.addCount(book.getBid());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
                 Alert information = new Alert(Alert.AlertType.INFORMATION, INFORMATION_DENY);
                 information.setTitle(COMMON_TITLE);
                 information.showAndWait();

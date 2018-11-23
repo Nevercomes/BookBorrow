@@ -80,7 +80,6 @@ public class LenderComment implements Initializable {
                 information.showAndWait();
             }
         }
-
         else {
             Alert information = new Alert(Alert.AlertType.INFORMATION, GlobalConst.INFORMATION_NOT_FULL);
             information.setTitle(COMMON_TITLE);

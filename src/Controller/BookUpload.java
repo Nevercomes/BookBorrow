@@ -154,7 +154,8 @@ public class BookUpload implements Initializable {
             record.setCreateTime(df.format(day));
             record.setOwnerid(userId);
             return true;
-        }catch (Exception E){
+        }catch (Exception e){
+            e.printStackTrace();
             return false;
         }
     }

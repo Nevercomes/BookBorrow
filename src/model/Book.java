@@ -11,6 +11,7 @@ public class Book{
     private int ownerid;
     private int holderid;
     private int score;
+    private String press;
 
     public int getScore() {
         return score;
@@ -90,5 +91,13 @@ public class Book{
 
     public void setHolderid(int holderid) {
         this.holderid = holderid;
+    }
+
+    public String getPress() {
+        return press;
+    }
+
+    public void setPress(String press) {
+        this.press = press;
     }
 }

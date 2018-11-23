@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 public class BookItem extends AnchorPane implements Initializable {
+
     private Main app;
     public void setApp(Main app) {
         this.app = app;
@@ -158,6 +159,8 @@ public class BookItem extends AnchorPane implements Initializable {
                 bookItemStatusLabel.setText("状态：" + bookStatusStr);
             }
             if(bookStatus == BookStatus.BORROWING) {
+                bookStatusStr = BookStatusText.getBookStatusTxt(BookStatus.BORROWING);
+                bookItemStatusLabel.setText("状态：" + bookStatusStr);
                 bookItemReturnTimeLabel.setVisible(true);
                 bookItemReturnTimeLabel.setManaged(true);
 //                confirmBtn.setVisible(true);

@@ -119,7 +119,7 @@ public class BookBorrowRequest implements Initializable {
             record.setUid(user.getUid());
             System.out.println("借书者申请留言： " + bookBorrowLeftTxt.getText());
             record.setLeft(bookBorrowLeftTxt.getText());
-            returnObj rs = BookRecordDao.insertRecoord(record);
+            returnObj rs = BookRecordDao.insertRecord(record);
             System.out.println(rs.getStatus());
             System.out.println(rs.getMsg());
 

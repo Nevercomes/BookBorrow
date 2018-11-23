@@ -4,7 +4,6 @@ import Utils.BookStatusInTable;
 import Utils.returnObj;
 import db.DBUtil;
 import global.BookStatus;
-import model.Book;
 import model.BookRecord;
 
 import java.sql.Connection;
@@ -161,7 +160,7 @@ public class BookRecordDao {
         return "";
     }
 
-    public static returnObj insertRecoord(BookRecord record){
+    public static returnObj insertRecord(BookRecord record){
         returnObj res = new returnObj();
         try {
             Connection conn = DBUtil.getConnection();

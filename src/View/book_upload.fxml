@@ -22,7 +22,7 @@
             <TextField fx:id="bookNameTxt" />
             <Label text="作者" />
             <TextField fx:id="bookAuthorTxt" />
-            <Label text="页数" />
+            <Label text="出版社" />
             <TextField fx:id="bookPressTxt" />
             <Label text="简介" />
             <TextArea fx:id="bookWordsTxt" prefHeight="150.0" prefWidth="380.0" />

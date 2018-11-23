@@ -174,13 +174,14 @@ public class BookDao {
     public static returnObj insertBook(Book book) throws Exception{
         try {
             Connection cnn = DBUtil.getConnection();
-            PreparedStatement ptmt = cnn.prepareStatement("INSERT INTO tieyif4_book_list (name,author,pagenum,introduction,status,ownerid) VALUES (?,?,?,?,?,?)");
+            PreparedStatement ptmt = cnn.prepareStatement("INSERT INTO tieyif4_book_list (name,author,press,introduction,status,ownerid,score) VALUES (?,?,?,?,?,?,?)");
             ptmt.setString(1,book.getName());
             ptmt.setString(2,book.getAuthor());
-            ptmt.setInt(3,book.getPagenum());
+            ptmt.setString(3,book.getPress());
             ptmt.setString(4,book.getIntroduction());
             ptmt.setInt(5,0);
             ptmt.setInt(6,book.getOwnerid());
+            ptmt.setInt(7,8);
             ptmt.execute();
             returnObj res = new returnObj();
             res.setStatus(true);
@@ -263,7 +264,7 @@ public class BookDao {
 
     public static int getBookId(int ownerid, String name) throws Exception{
         Connection conn = DBUtil.getConnection();
-        PreparedStatement ptmt = conn.prepareStatement("SELECT bid FROM tieyif4_book_list WHERE `owner`=? AND `String`=?");
+        PreparedStatement ptmt = conn.prepareStatement("SELECT bid FROM tieyif4_book_list WHERE `ownerid`=? AND `name`=?");
         ptmt.setInt(1,ownerid);
         ptmt.setString(2,name);
         ResultSet rs = ptmt.executeQuery();
@@ -316,6 +317,10 @@ public class BookDao {
             PreparedStatement ptmt = conn.prepareStatement("UPDATE tieyif4_book_record SET `status` = 6 WHERE `rid` = ?");
             ptmt.setInt(1,nowRid);
             ptmt.execute();
+            BookRecord record = BookRecordDao.getRecordByRid(nowRid);
+            ptmt = conn.prepareStatement("update tieyif4_book_list set `status`=0, `holderid`=0 WHERE `bid` = ?");
+            ptmt.setInt(1, record.getBid());
+            ptmt.execute();
             ptmt = conn.prepareStatement("UPDATE tieyif4_user_info SET `level_score` = `level_score` + ? WHERE `uid` = ?");
             ptmt.setInt(1,score);
             ptmt.setInt(2, BookRecordDao.getRecordByRid(nowRid).getUid());
@@ -326,4 +331,16 @@ public class BookDao {
     }
 
 
+    public static void addCount(int bid) {
+        try {
+            Connection conn = DBUtil.getConnection();
+            Book book = BookDao.getBookByBid(bid);
+            PreparedStatement ptmt = conn.prepareStatement("update tieyif4_book_list set `count`=? WHERE `bid` = ?");
+            ptmt.setInt(1, book.getCount()+1);
+            ptmt.setInt(2, bid);
+            ptmt.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

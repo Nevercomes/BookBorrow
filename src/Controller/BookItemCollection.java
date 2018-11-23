@@ -99,15 +99,15 @@ public class BookItemCollection extends AnchorPane implements Initializable {
         setLayout();
     }
 
-    private void initTestData() {
-        belongId = PageIndex.BOOK_BORROW;
-        bookName = GlobalConst.TEST_BOOK_NAME;
-        bookAuthor = GlobalConst.TEST_BOOK_AUTHOR;
-        bookScore = GlobalConst.TEST_BOOK_SCORE;
-        bookStatus = BookStatus.FREE;
-        bookTime = GlobalConst.TEST_BOOK_TIME;
-        bookStatusStr = BookStatusText.getBookStatusTxt(bookStatus);
-    }
+//    private void initTestData() {
+//        belongId = PageIndex.BOOK_BORROW;
+//        bookName = GlobalConst.TEST_BOOK_NAME;
+//        bookAuthor = GlobalConst.TEST_BOOK_AUTHOR;
+//        bookScore = GlobalConst.TEST_BOOK_SCORE;
+//        bookStatus = BookStatus.FREE;
+//        bookTime = GlobalConst.TEST_BOOK_TIME;
+//        bookStatusStr = BookStatusText.getBookStatusTxt(bookStatus);
+//    }
 
     private void setData() {
 //        bookItemNameLabel.setText(bookName);
@@ -121,6 +121,7 @@ public class BookItemCollection extends AnchorPane implements Initializable {
         bookStatusStr = BookStatusText.getBookStatusTxt(bookStatus);
         bookItemStatusLabel.setText(bookStatusStr);
         bookItemTimeLabel.setText(bookTime);
+        bookItemScoreLabel.setText(bookScore);
         String s = "res/" + String.valueOf(bid) + ".jpg";
         System.out.println(s);
         bookImg = new Image(s);
